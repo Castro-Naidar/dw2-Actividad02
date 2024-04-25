@@ -168,3 +168,23 @@ button:hover {
     justify-content: center;
   }
 } /*Final do estilo responsivo*/
+
+/*Estilo de los botones eliminar y editar de la tabla de datos*/
+.editar,
+.eliminar {
+  width: 90px;
+  height: 30px;
+  font-family: "IBM Plex Mono", monospace;
+  color: #ffaa04;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 23px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid #ffaa04;
+  margin-bottom: 30px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s;
+}
