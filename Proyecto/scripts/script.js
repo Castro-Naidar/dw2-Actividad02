@@ -1,5 +1,5 @@
 
-//Máscaras com Jquery
+//Máscaras con Jquery
 
 $(document).ready(function () {
     var SPMaskBehavior = function (val) {
@@ -21,8 +21,8 @@ $(document).ready(function () {
 
 
 
-//fetch para busca e preenchimento do endereço através da API viacep
-// Os campos que devem ser preenchidos pelo fetch são selecionados pelo id do input e vinculados a uma variável
+//fetch para buscar y rellenar la dirección a través de la API viacep
+// Los campos a rellenar por el fetch se seleccionan por el id de entrada y se vinculan a una variable
 const inputCep = document.querySelector('#cep');
 const resultadoLogradouro = document.querySelector('#logradouro');
 const resultadoComplemento = document.querySelector('#complemento');
@@ -31,20 +31,20 @@ const resultadoCidade = document.querySelector('#departamento');
 const resultadoEstado = document.querySelector('#municipio');
 
 
-// Adicionado um eventListener para identificar quando o campo de inputCep for alterado e assim lidar com a busca, só inicia a funcao callback quando o usuario apertar enter ou tab no teclado e passar para o proximo campo
+// Añadido un eventListener para identificar cuando se cambia el campo inputCep y así manejar la búsqueda, sólo iniciando la función callback cuando el usuario pulsa enter o tab en el teclado y pasa al siguiente campo.
 inputCep.addEventListener('change', handleSearch);
 
-//função para busca do cep digitado
+//función de búsqueda del código postal introducido
 function handleSearch(event) {
     event.preventDefault();
     const cep = inputCep.value;
     buscaCep(cep);
 }
 
-//funcao para realizar o fetch e preencher cada campo com o valor do objeto json retornado pela funcao. 
+//función para realizar la obtención y rellenar cada campo con el valor del objeto json devuelto por la función. 
 
 function buscaCep(cep) {
-    //replace utilizado para retirar a mascara e realizar a busca apenas com os digitos do input
+    //reemplazar se utiliza para eliminar la máscara y realizar la búsqueda sólo con los dígitos de entrada
     var cep = cep.replace(/\D/g, '');
 
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -59,18 +59,18 @@ function buscaCep(cep) {
 
 }
 
-// Validação preenchimento dos campos.
+// Validación de campos.
 
 const fields = document.querySelectorAll("[required]")
 
 function ValidateField(field) {
-    // logica para verificar se existem erros
+    // logica para verificar si existen errores
     function verifyErrors() {
         let foundError = false;
 
         for (let error in field.validity) {
-            // se não for customError
-            // então verifica se tem erro
+            // si no customError
+            // entonces comprueba si hay errors
             if (field.validity[error] && !field.validity.valid) {
                 foundError = error
             }
@@ -134,7 +134,7 @@ function customValidation(event) {
 
 for (field of fields) {
     field.addEventListener("invalid", event => {
-        // eliminar o bubble da mensagem de erro padrao do html
+        // eliminar la burbuja del mensaje de error html estándar
         event.preventDefault()
 
         customValidation(event)
@@ -142,7 +142,7 @@ for (field of fields) {
     field.addEventListener("blur", customValidation)
 }
 
-// o alerta com a confirmacao do envio do formulario só será exibido se não houver erro no preenchimento. 
+// la alerta que confirma que el formulario ha sido enviado sólo se mostrará si no hay ningún error al rellenarlo. 
 document.querySelector("form")
     .addEventListener("submit", event => {
         alert("Registro exitoso");
